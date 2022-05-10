@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
@@ -35,8 +36,8 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
     }
 
     @Override
-    public AvaliacaoFisica get(Long id) {
-        return avaliacaoFisicaRepository.findById(id).get();
+    public Optional<AvaliacaoFisica> get(Long id) {
+        return avaliacaoFisicaRepository.findById(id);
     }
 
     @Override
@@ -46,7 +47,12 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
 
     @Override
     public AvaliacaoFisica update(Long id, AvaliacaoFisicaUpdateForm formUpdate) {
-        return null;
+        AvaliacaoFisica avaliacao = avaliacaoFisicaRepository.findById(id).get();
+
+        avaliacao.setPeso(formUpdate.getPeso());
+        avaliacao.setAltura(formUpdate.getAltura());
+
+        return avaliacaoFisicaRepository.save(avaliacao);
     }
 
     @Override
