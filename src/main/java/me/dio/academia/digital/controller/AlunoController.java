@@ -41,6 +41,17 @@ public class AlunoController {
         return service.getAll(dataNascimento);
     }
 
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<Object> deleteAluno(@PathVariable  Long id) {
+        Optional<Aluno> alunoOptional = service.get(id);
+
+        if (alunoOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado o aluno com o ID especificado");
+        }
+        service.delete(alunoOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Aluno com o ID " + id + "deletado");
+    }
+
     @GetMapping("/avaliacoes/{id}")
     public List<AvaliacaoFisica> getAllAvaliacaoFisicaById(@PathVariable Long id) {
         return service.getAllAvaliacaoFisicaById(id);

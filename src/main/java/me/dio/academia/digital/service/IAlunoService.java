@@ -42,9 +42,9 @@ public interface IAlunoService {
 
     /**
      * Deleta um Aluno específico.
-     * @param id id do Aluno que será removido.
+     * @param aluno: O aluno que será removido.
      */
-    void delete(Long id);
+    void delete(Aluno aluno);
 
     /**
      * @param id id do aluno que a lista de avaliações pertence
