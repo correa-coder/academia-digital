@@ -39,4 +39,15 @@ public class MatriculaController {
     public List<Matricula> getAll(@RequestParam(value = "bairro", required = false) String bairro) {
         return service.getAll(bairro);
     }
+
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<Object> deleteMatricula(@PathVariable  Long id) {
+        Optional<Matricula> matriculaOptional = service.get(id);
+
+        if (matriculaOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não existe a matrícula com o ID especificado");
+        }
+        service.delete(matriculaOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Remoção da matrícula com o ID " + id);
+    }
 }
