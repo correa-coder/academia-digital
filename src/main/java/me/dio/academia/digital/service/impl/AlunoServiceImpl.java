@@ -50,7 +50,8 @@ public class AlunoServiceImpl implements IAlunoService {
     }
 
     @Override
-    public List<AvaliacaoFisica> getAllAvaliacaoFisica() {
-        return null;
+    public List<AvaliacaoFisica> getAllAvaliacaoFisicaById(Long id) {
+        Aluno aluno = repository.findById(id).get();
+        return aluno.getAvaliacoes();
     }
 }

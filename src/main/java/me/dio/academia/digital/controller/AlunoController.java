@@ -26,8 +26,8 @@ public class AlunoController {
         return service.create(form);
     }
 
-    @GetMapping
-    public List<AvaliacaoFisica> getAllAvaliacaoFisica() {
-        return service.getAllAvaliacaoFisica();
+    @GetMapping("/avaliacoes/{id}")
+    public List<AvaliacaoFisica> getAllAvaliacaoFisicaById(@PathVariable Long id) {
+        return service.getAllAvaliacaoFisicaById(id);
     }
 }

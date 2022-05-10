@@ -45,9 +45,9 @@ public interface IAlunoService {
     void delete(Long id);
 
     /**
-     *
+     * @param id id do aluno que a lista de avaliações pertence
      * @return uma lista com todas as avaliações do aluno de acordo com o Id
      */
-    List<AvaliacaoFisica> getAllAvaliacaoFisica();
+    List<AvaliacaoFisica> getAllAvaliacaoFisicaById(Long id);
 
 }
